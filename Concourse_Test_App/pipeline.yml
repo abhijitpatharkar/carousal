@@ -1,0 +1,36 @@
+---
+resources:
+- name: source-code
+  type: git
+ 
+  source:
+    uri: https://bitbucket.org/mindstixlabs/carousel.git
+    branch: master
+
+- name: cloudfoundry
+  type: cf
+  source:
+    api: https://api.sys.wdc-np.itcna.vmware.com
+    username: 123@vmware.com
+    password: abc@123
+    organization: mobile-apps
+    space: dev
+    skip_cert_check: true
+
+  
+jobs:
+- name: build
+  public: true
+  plan:
+  - get: source-code
+    trigger: true
+  - task: build
+    file: source-code/ci/build.yml
+  - put: cloudfoundry
+    params:
+      manifest: source-code/manifest.yml
+      path: build-output/concourse-maven-cf-simple-0.0.1-SNAPSHOT.jar
+    
+    
+    
+  
