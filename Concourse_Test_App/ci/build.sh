@@ -3,6 +3,7 @@
 set -e -x
 
 cd source-code
+cd Concourse_Test_App
   ./mvnw clean package
 cd ..
 
