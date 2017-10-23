@@ -5,7 +5,7 @@ resources:
  
   source:
     uri: https://bitbucket.org/mindstixlabs/carousel.git
-    branch: master
+    branch: dev
 
 - name: cloudfoundry
   type: cf
